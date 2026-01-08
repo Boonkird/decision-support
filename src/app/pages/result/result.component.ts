@@ -22,13 +22,11 @@ import { SurveyResult } from '../../models/survey.model';
           ></div>
 
           <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 relative z-10">
-            {{ bestMatch.track.code }}
+            {{ bestMatch.trackCode }}
           </h1>
-          <h3 class="text-2xl text-cyber-primary mb-6">{{ bestMatch.track.name }}</h3>
-          <p class="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
-            {{ bestMatch.track.description }}
-          </p>
-
+          
+          <h3 class="text-2xl text-cyber-primary mb-6">{{ bestMatch.trackName }}</h3>
+          
           <div
             class="mt-8 inline-block bg-cyber-secondary text-white font-bold py-2 px-6 rounded-full shadow-[0_0_15px_#bc13fe]"
           >
@@ -46,7 +44,7 @@ import { SurveyResult } from '../../models/survey.model';
 
             <div class="flex-1">
               <div class="flex justify-between mb-2">
-                <span class="font-bold text-white">{{ res.track.name }}</span>
+                <span class="font-bold text-white">{{ res.trackName }}</span>
                 <span class="text-cyber-primary">{{ res.percentage | number : '1.0-0' }}%</span>
               </div>
               <div class="h-2 bg-gray-700 rounded-full overflow-hidden">

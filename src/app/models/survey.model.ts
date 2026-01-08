@@ -1,29 +1,42 @@
 export interface Track {
-  code: string; // CS, IT, CDT, CE
-  name: string;
+  trackId: number;        // Backend ส่ง trackId
+  trackCode: string;      // Backend ส่ง trackCode
+  trackNameTh: string;    // Backend ส่ง trackNameTh
+  trackNameEn: string;    // Backend ส่ง trackNameEn
   description: string;
 }
 
 export interface Question {
-  id: number;
-  text: string;
-  section: 'interest' | 'skill' | 'goal'; // ตรงกับ PDF: ความสนใจ, ความถนัด, เป้าหมาย
-  trackWeights?: { [key: string]: number }; // เก็บไว้คำนวณ Mockup (ของจริง Backend จัดการ)
+  questionId: number;     // Backend ใช้ questionId (ไม่ใช่ id)
+  questionText: string;   // Backend ใช้ questionText (ไม่ใช่ text)
+  sectionId?: number;
+  sectionTitle?: string;  // Backend ส่ง sectionTitle มาให้ด้วย
+  // trackWeights ลบออกได้เลย เพราะ Frontend ไม่ต้องคำนวณเองแล้ว
 }
 
 export interface StudentProfile {
-  name: string;
+  fullName: string;       // แก้จาก name เป็น fullName
   school: string;
-  level: string;
+  levelEducation: string; // แก้จาก level เป็น levelEducation
+  gender: string;    
+  province?: string;      // ใส่ ? ไว้ก่อนก็ได้เผื่อค่าว่าง
+  age?: number;
+  studyProgram?: string;     // เพิ่ม gender (Backend มี)
 }
 
-export interface SurveyAnswer {
+export interface AnswerRequest {
   questionId: number;
-  score: number; // 1-5
+  score: number;
+}
+
+export interface SurveySubmitRequest {
+  studentProfile: StudentProfile;
+  answers: AnswerRequest[];
 }
 
 export interface SurveyResult {
-  track: Track;
+  trackCode: string;
+  trackName: string;
   score: number;
   percentage: number;
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SurveyService } from './survey.service';
-import { Question, SurveyAnswer } from '../models/survey.model';
+import { Question, AnswerRequest } from '../models/survey.model';
 
 @Component({
   selector: 'app-survey',
@@ -31,7 +31,7 @@ import { Question, SurveyAnswer } from '../models/survey.model';
               Current Section
             </h3>
             <h2 class="text-2xl font-bold text-white capitalize">
-              {{ currentQuestion.section }} Phase
+              {{ currentQuestion.sectionTitle }} Phase
             </h2>
           </div>
           <div class="text-right">
@@ -51,7 +51,7 @@ import { Question, SurveyAnswer } from '../models/survey.model';
           class="bg-gradient-to-b from-white/5 to-transparent border border-white/10 p-8 md:p-12 rounded-3xl w-full text-center mb-12 backdrop-blur-sm relative shadow-[0_0_30px_rgba(0,0,0,0.5)]"
         >
           <h1 class="text-2xl md:text-4xl font-medium leading-relaxed text-white">
-            {{ currentQuestion.text }}
+            {{ currentQuestion.questionText }}
           </h1>
         </div>
 
@@ -116,7 +116,7 @@ export class SurveyComponent implements OnInit {
   questions: Question[] = [];
   currentIndex = 0;
   currentScore = 3;
-  answers: SurveyAnswer[] = [];
+  answers: AnswerRequest[] = [];
   loading = true;
   isInteracting = false;
 
@@ -156,7 +156,7 @@ export class SurveyComponent implements OnInit {
   }
 
   nextQuestion() {
-    this.answers.push({ questionId: this.currentQuestion.id, score: this.currentScore });
+    this.answers.push({ questionId: this.currentQuestion.questionId, score: this.currentScore });
     if (this.currentIndex < this.questions.length - 1) {
       this.currentIndex++;
       this.currentScore = 3;
